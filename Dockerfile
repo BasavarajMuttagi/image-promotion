@@ -21,7 +21,7 @@ COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/package.json /app/package-lock.json ./
 
 # Install production dependencies only (no devDependencies)
-RUN npm ci --only=production
+RUN npm ci --omit=dev
 
 # Expose the port the app runs on
 EXPOSE 3000
