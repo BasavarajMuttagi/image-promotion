@@ -2,7 +2,7 @@
 FROM node:24-alpine AS builder
 
 WORKDIR /app
-
+RUN npm install -g npm@latest && npm cache clean --force
 # Copy only dependency manifests first (better layer caching)
 COPY package.json package-lock.json ./
 RUN npm ci
@@ -13,7 +13,7 @@ RUN npm run build
 
 # ---------- Stage 2: Production ----------
 FROM node:24-alpine
-
+RUN npm install -g npm@latest && npm cache clean --force
 WORKDIR /app
 
 # Copy built files from builder
