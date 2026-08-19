@@ -58,13 +58,11 @@ describe('API Tests', () => {
     });
 
     it('should accept custom environment', async () => {
-      const response = await request
-        .post('/api/images')
-        .send({
-          name: 'test-image',
-          url: 'https://example.com/image.jpg',
-          environment: 'production',
-        });
+      const response = await request.post('/api/images').send({
+        name: 'test-image',
+        url: 'https://example.com/image.jpg',
+        environment: 'production',
+      });
       expect(response.status).toBe(201);
       expect(response.body.environment).toBe('production');
     });
